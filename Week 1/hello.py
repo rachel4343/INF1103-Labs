@@ -4,7 +4,7 @@ print("Welcome here")
 print("My first post!")
 print("=============================")
 
-# git add hello.py; Prepares your changes to be committed.
+# git add git add "Week 2/hello.py"; Prepares your changes to be committed.
 # git status; You should see your Python file as modified. Checks the current state of your repository.
 # git commit -m "First Post"; "Save this version"
 # git log; Shows your commit history.
@@ -12,10 +12,14 @@ print("=============================")
 
 
 
-# # Activity 2: Update your Profile and add it to the repository 
-# username = "cool_creator"
-# bio = "Fun Blogger"
-# followers = 100
+# Activity 2: Update your Profile and add it to the repository 
+username = "cool_creator"
+bio = "Fun Blogger"
+followers = 100
+
+print("Username:", username)
+print("Bio:", bio)
+print("Followers:", followers)
 
 # # git diff; Checks the difference in the repository files
 # # git add hello.py; Prepares your changes to be committed.
