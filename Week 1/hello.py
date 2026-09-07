@@ -42,28 +42,28 @@ print("Day 3:", followers)
 
 # git status; You should see your Python file as modified. Checks the current state of your repository.
 # git add hello.py; Prepares your changes to be committed.
-# git commit -m "Update follower count operations"; "Save this version"
+# git commit -m "Assignment Variables; "Save this version"
 # git log; Shows your commit history.
 # q; quit
 
 
 
-# # Activity 4: Interactive profile creator 
-# username = input("Enter your username: ")
-# age = int(input("Enter your age: "))
-# category = input("Enter Content Category: ")
+# Activity 4: Interactive profile creator 
+username = input("Enter your username: ")
+age = int(input("Enter your age: "))
+category = input("Enter Content Category: ")
 
-# print("\nInstagram Profile Created!")
-# print("=============================")
-# print("Username:", username)
-# print("Age:", age)
-# print("Content Category:", category)
+print("\nInstagram Profile Created!")
+print("=============================")
+print("Username:", username)
+print("Age:", age)
+print("Content Category:", category)
 
-# # git status; You should see your Python file as modified. Checks the current state of your repository.
-# # git add hello.py; Prepares your changes to be committed.
-# # git commit -m "Create interactive profile"; "Save this version"
-# # git log; Shows your commit history.
-# # q; quit
+# git status; You should see your Python file as modified. Checks the current state of your repository.
+# git add hello.py; Prepares your changes to be committed.
+# git commit -m "Dynamic profile"; "Save this version"
+# git log; Shows your commit history.
+# q; quit
 
 
 
@@ -87,6 +87,6 @@ print("Day 3:", followers)
 
 # # git status; You should see your Python file as modified. Checks the current state of your repository.
 # # git add hello.py; Prepares your changes to be committed.
-# # git commit -m "Add age and category condition"
+# # git commit -m "Fun Conditions"
 # # git log; Shows your commit history.
 # # q; quit
