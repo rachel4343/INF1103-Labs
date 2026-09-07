@@ -67,26 +67,26 @@ print("Content Category:", category)
 
 
 
-# # Activity 5: Something fun to think about.
-# # input() always returns a string (str).
-# # 2 conditions being checked.
-# username = input("Enter your username: ")
-# age = int(input("Enter your age: "))
-# category = input("Enter Content Category: ")
+# Activity 5: Something fun to think about.
+# input() always returns a string (str).
+# 2 conditions being checked.
+username = input("Enter your username: ")
+age = int(input("Enter your age: "))
+category = input("Enter Content Category: ")
 
-# print("\nInstagram Profile Created!")
-# print("=============================")
-# print("Username:", username)
-# print("Age:", age)
-# print("Content Category:", category)
+print("\nInstagram Profile Created!")
+print("=============================")
+print("Username:", username)
+print("Age:", age)
+print("Content Category:", category)
 
-# if age>40 and category == "fun":
-#     print("You are old what is fun for you??")
-# # elif age<40 and category == "fun":
-# #     print("You are young, have fun!")
+if age>40 and category == "fun":
+    print("You are old what is fun for you??")
+# elif age<40 and category == "fun":
+#     print("You are young, have fun!")
 
-# # git status; You should see your Python file as modified. Checks the current state of your repository.
-# # git add hello.py; Prepares your changes to be committed.
-# # git commit -m "Fun Conditions"
-# # git log; Shows your commit history.
-# # q; quit
+# git status; You should see your Python file as modified. Checks the current state of your repository.
+# git add hello.py; Prepares your changes to be committed.
+# git commit -m "Fun Conditions"
+# git log; Shows your commit history.
+# q; quit
