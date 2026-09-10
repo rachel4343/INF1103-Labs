@@ -16,11 +16,19 @@ while True:
     if stock == "quit":
         break
 
+# Requirement 4
+# Handle invalid input: If the user enters a string (e.g., "ten"), reject it, print an 
+# error, and move to the next iteration. (Hint: use.isdigit()).
+# git add auditor.py
+# git commit -m "Reject invalid stock input"
+# git status
+    if not stock.isdigit():
+        print("Error: Invalid stock quantity.")
+        continue
+
 # Requirement 3
 # Accept stock values as integers.
 # git add auditor.py
 # git commit -m "Add stock values as integers"
 # git status
     stock = int(stock)
-
-    
