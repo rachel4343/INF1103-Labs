@@ -6,6 +6,9 @@
 # git log
 inventory = 0
 
+# Requirement 8
+failed_entries = 0
+
 # Requirement 2
 # Run in a continuous loop asking user to enter a stock quantity, until the user 
 # types quit. (Think of which loop might be helpful here: for or while) 
@@ -27,6 +30,7 @@ while True:
 # git log
     if not stock.isdigit():
         print("Error: Invalid stock quantity.")
+        failed_entries += 1
         continue
 
 # Requirement 3
@@ -45,6 +49,7 @@ while True:
 # git log
     if stock < 0:
         print("Error: Stock quantity cannot be negative.")
+        failed_entries += 1
         continue
 
 # Requirement 6
@@ -59,6 +64,21 @@ while True:
 # Requirement 7
 # Trigger Overstock Alert: If the total inventory exceeds 500 units, print an 
 # alert and break the loop immediately.
+# git add auditor.py
+# git commit -m "Add inventory limit alert"
+# git status
+# git log
     if inventory > 500:
         print("Alert: Overstock! Inventory exceeds 500 units.")
         break
+
+# Requirement 8
+# Reporting: When the user types quit, print the Total Units Processed and the 
+# Number of Failed/Rejected Entries.
+# git add auditor.py
+# git commit -m "Add final inventory report"
+# git status
+# git log
+print("\n--- Inventory Report ---")
+print(f"Total Units Processed: {inventory}")
+print(f"Number of Failed/Rejected Entries: {failed_entries}")
