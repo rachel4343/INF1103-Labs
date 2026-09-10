@@ -46,3 +46,10 @@ while True:
     if stock < 0:
         print("Error: Stock quantity cannot be negative.")
         continue
+
+# Requirement 6
+# Manage State: Keep a running total of the inventory. 
+# git add auditor.py
+# git commit -m "Keep running total of inventory"
+    inventory += stock
+    print(f"Current inventory: {inventory}")
