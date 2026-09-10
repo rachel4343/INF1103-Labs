@@ -16,4 +16,11 @@ while True:
     if stock == "quit":
         break
 
+# Requirement 3
+# Accept stock values as integers.
+# git add auditor.py
+# git commit -m "Add stock values as integers"
+# git status
+    stock = int(stock)
+
     
