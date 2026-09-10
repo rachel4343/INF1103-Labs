@@ -50,6 +50,15 @@ while True:
 # Requirement 6
 # Manage State: Keep a running total of the inventory. 
 # git add auditor.py
-# git commit -m "Keep running total of inventory"
+# git commit -m "Add running inventory total"
+# git status
+# git log
     inventory += stock
     print(f"Current inventory: {inventory}")
+
+# Requirement 7
+# Trigger Overstock Alert: If the total inventory exceeds 500 units, print an 
+# alert and break the loop immediately.
+    if inventory > 500:
+        print("Alert: Overstock! Inventory exceeds 500 units.")
+        break
