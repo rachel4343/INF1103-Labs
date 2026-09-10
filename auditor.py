@@ -3,6 +3,7 @@
 # git add auditor.py
 # git commit -m "Initialize inventory"
 # git status
+# git log
 inventory = 0
 
 # Requirement 2
@@ -11,6 +12,7 @@ inventory = 0
 # git add auditor.py
 # git commit -m "Add continuous stock input loop"
 # git status
+# git log
 while True:
     stock = input("Enter stock quantity: ")
     if stock == "quit":
@@ -22,6 +24,7 @@ while True:
 # git add auditor.py
 # git commit -m "Reject invalid stock input"
 # git status
+# git log
     if not stock.isdigit():
         print("Error: Invalid stock quantity.")
         continue
@@ -31,4 +34,15 @@ while True:
 # git add auditor.py
 # git commit -m "Add stock values as integers"
 # git status
+# git log
     stock = int(stock)
+
+# Requirement 5
+# Enforce business rules: Reject negative numbers.
+# git add auditor.py
+# git commit -m "Reject negative stock values"
+# git status
+# git log
+    if stock < 0:
+        print("Error: Stock quantity cannot be negative.")
+        continue
