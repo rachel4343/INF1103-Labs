@@ -53,6 +53,11 @@ def generate_report(total_units, failed_attempts):
     print(f"Total Units Processed: {total_units}")
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
 
+# git add modular_auditor.py
+# git commit -m "Add generate_report() function"
+# git status
+# git log
+
 
 # Main program
 # Initialize Requirements
@@ -84,3 +89,9 @@ while True:
         break
 
 generate_report(deliveries_processed, failed_entries)
+
+# git add modular_auditor.py
+# git commit -m "Add Complete modular auditor inventory"
+# git status
+# git log
+# git push origin master
