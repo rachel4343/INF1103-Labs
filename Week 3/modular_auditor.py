@@ -25,8 +25,7 @@ def get_valid_input():
     return stock
 
 # git add modular_auditor.py
-# git commit -m "Add input validation function"
-# git status
+# git commit -m "Add get_valid_input() function"
 # git log
 
 
@@ -35,6 +34,24 @@ def get_valid_input():
 def process_delivery(current_total, new_value):
     new_total = current_total + new_value
     return new_total
+
+# git add modular_auditor.py
+# git commit -m "Add process_delivery() function"
+# git status
+# git log
+
+
+# Requirement 3
+# calculate_tax(amount): A new requirement! This function takes a delivery amount and returns the tax (10% of that specific delivery). 
+def calculate_tax(amount):
+    tax = amount * 0.10
+    return tax
+
+# git add modular_auditor.py
+# git commit -m "Add calculate_tax() function"
+# git status
+# git log
+
 
 
 # # Manage State: Keep a running total of the inventory. 
