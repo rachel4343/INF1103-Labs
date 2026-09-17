@@ -1,9 +1,3 @@
-# Initialize Requirements
-inventory = 0 # Initialize the inventory to zero in the start
-deliveries_processed = 0 # Track the number of valid deliveries
-failed_entries = 0 # Track the number of failed/rejected entries
-
-
 # Requirement 1
 # get_valid_input(): Handles the prompt, handles input validation, and returns a valid integer or a "quit" signal. 
 def get_valid_input():
@@ -52,32 +46,9 @@ def calculate_tax(amount):
 # git status
 # git log
 
-
-
-# # Manage State: Keep a running total of the inventory. 
-# # git add auditor.py
-# # git commit -m "Add running inventory total"
-# # git status
-# # git log
-#     inventory += stock
-#     print(f"Current inventory: {inventory}")
-
-# # Trigger Overstock Alert: If the total inventory exceeds 500 units, print an 
-# # alert and break the loop immediately.
-# # git add auditor.py
-# # git commit -m "Add inventory limit alert"
-# # git status
-# # git log
-#     if inventory > 500:
-#         print("Alert: Overstock! Inventory exceeds 500 units.")
-#         break
-
-# # Reporting: When the user types quit, print the Total Units Processed and the 
-# # Number of Failed/Rejected Entries.
-# # git add auditor.py
-# # git commit -m "Add final inventory report"
-# # git status
-# # git log
-# print("\n--- Inventory Report ---")
-# print(f"Total Units Processed: {inventory}")
-# print(f"Number of Failed/Rejected Entries: {failed_entries}")
+# Requirement 4
+# generate_report(total_units, failed_attempts): A dedicated function to print the final summary.
+def generate_report(total_units, failed_attempts):
+    print("\n--- Inventory Report ---")
+    print(f"Total Units Processed: {total_units}")
+    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
