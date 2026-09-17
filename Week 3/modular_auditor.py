@@ -3,6 +3,7 @@ inventory = 0 # Initialize the inventory to zero in the start
 deliveries_processed = 0 # Track the number of valid deliveries
 failed_entries = 0 # Track the number of failed/rejected entries
 
+
 # Requirement 1
 # get_valid_input(): Handles the prompt, handles input validation, and returns a valid integer or a "quit" signal. 
 def get_valid_input():
@@ -23,8 +24,19 @@ def get_valid_input():
 
     return stock
 
+# git add modular_auditor.py
+# git commit -m "Add input validation function"
+# git status
+# git log
 
-# # Requirement 6
+
+# Requirement 2
+# process_delivery(current_total, new_value): Calculates the new total and returns it. 
+def process_delivery(current_total, new_value):
+    new_total = current_total + new_value
+    return new_total
+
+
 # # Manage State: Keep a running total of the inventory. 
 # # git add auditor.py
 # # git commit -m "Add running inventory total"
@@ -33,7 +45,6 @@ def get_valid_input():
 #     inventory += stock
 #     print(f"Current inventory: {inventory}")
 
-# # Requirement 7
 # # Trigger Overstock Alert: If the total inventory exceeds 500 units, print an 
 # # alert and break the loop immediately.
 # # git add auditor.py
@@ -44,7 +55,6 @@ def get_valid_input():
 #         print("Alert: Overstock! Inventory exceeds 500 units.")
 #         break
 
-# # Requirement 8
 # # Reporting: When the user types quit, print the Total Units Processed and the 
 # # Number of Failed/Rejected Entries.
 # # git add auditor.py
