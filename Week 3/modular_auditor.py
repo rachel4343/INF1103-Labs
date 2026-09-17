@@ -52,3 +52,35 @@ def generate_report(total_units, failed_attempts):
     print("\n--- Inventory Report ---")
     print(f"Total Units Processed: {total_units}")
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+
+
+# Main program
+# Initialize Requirements
+inventory = 0 # Initialize the inventory to zero in the start
+deliveries_processed = 0 # Track the number of valid deliveries
+failed_entries = 0 # Track the number of failed/rejected entries
+
+while True:
+    stock = get_valid_input()
+
+    if stock == "quit":
+        break
+
+    if stock is None:
+        failed_entries += 1
+        continue
+
+    inventory = process_delivery(inventory, stock)
+
+    tax = calculate_tax(stock)
+
+    deliveries_processed += 1
+
+    print(f"Current inventory: {inventory}")
+    print(f"Tax for this delivery: {tax}")
+
+    if inventory > 500:
+        print("Alert: Overstock! Inventory exceeds 500 units.")
+        break
+
+generate_report(deliveries_processed, failed_entries)
