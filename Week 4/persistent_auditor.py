@@ -65,18 +65,18 @@ def generate_report(total_units, failed_attempts):
 # Requirement 5
 # load_inventory(): Loads the saved inventory total and transaction history.
 def load_inventory():
-    if not os.path.exists("inventory.txt"):
-        return 0, []
+    if not os.path.exists("inventory.txt"): # If inventory.txt DOES NOT exist...
+        return 0, [] # Start the inventory at 0, Start with an empty transaction history.
 
-    with open("inventory.txt", "r") as file:
-        lines = file.readlines()
+    with open("inventory.txt", "r") as file: # Open inventory.txt so Python can read it.
+        lines = file.readlines() # This takes everything inside inventory.txt and puts it into a Python list.
 
-    total = int(lines[0].strip())
+    total = int(lines[0].strip()) # Take the first line of the file and convert it into an integer called total.
 
-    if len(lines) > 1 and lines[1].strip():
-        history = [int(value) for value in lines[1].strip().split(",")]
+    if len(lines) > 1 and lines[1].strip(): # If there is a second line AND that second line contains something...
+        history = [int(value) for value in lines[1].strip().split(",")] # This line splits the second line of the file by commas and converts each value from a string into an integer, storing all the transaction amounts in the history list.
     else:
-        history = []
+        history = [] # If the file doesn't have a second line, or the second line is empty: return empty history
 
     return total, history
 
@@ -101,10 +101,13 @@ while True:
 
     tax = calculate_tax(stock)
 
+    history.append(stock)
+
     deliveries_processed += 1
 
     print(f"Current inventory: {inventory}")
     print(f"Tax for this delivery: {tax}")
+    # print(f"Transaction History: {history}") Track Transaction history
 
     if inventory > 500:
         print("Alert: Overstock! Inventory exceeds 500 units.")
