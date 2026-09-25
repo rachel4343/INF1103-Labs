@@ -1,151 +1,206 @@
 import os
 
 # Requirement 1
-# get_valid_input(): Handles the prompt, handles input validation, and returns a valid integer or a "quit" signal. 
+# get_valid_input(): Gets the product name and quantity from the user.
 def get_valid_input():
-    stock = input("Enter stock quantity: ")
 
-    if stock == "quit":
+    # Ask the user to enter a product name.
+    product_name = input("Enter Product Name ('quit' to end): ")
+
+    # Allow the user to quit before entering a quantity.
+    if product_name.lower() == "quit":
         return "quit"
 
-    if not stock.isdigit():
-        print("Error: Invalid stock quantity.")
-        return None # tells the main program this entry was invalid.
+    # Keep asking for the quantity until a valid one is entered.
+    while True:
 
-    stock = int(stock)
-    
-    if stock < 0:
-        print("Error: Stock quantity cannot be negative.")
-        return None
+        # Ask the user to enter the quantity.
+        quantity = input("Enter Quantity: ").strip()
 
-    return stock
+        # Check whether the quantity contains only digits.
+        if not quantity.isdigit():
+            print("Error: Invalid quantity.")
+            continue # Skips the current iteration and starts the next iteration of the loop it belongs to.
 
-# git add modular_auditor.py
-# git commit -m "Add get_valid_input() function"
-# git log
+        # Convert the quantity from text into an integer.
+        quantity = int(quantity)
+
+        # Check that the quantity is greater than 0.
+        if quantity <= 0:
+            print("Error: Quantity must be greater than 0.")
+            continue
+
+        # Return both the product name and quantity.
+        return product_name, quantity
 
 
 # Requirement 2
-# process_delivery(current_total, new_value): Calculates the new total and returns it. 
-def process_delivery(current_total, new_value):
-    new_total = current_total + new_value
-    return new_total
+# load_inventory(): Loads the saved orders from inventory.txt.
+def load_inventory():
 
-# git add modular_auditor.py
-# git commit -m "Add process_delivery() function"
-# git status
-# git log
+    # Check whether inventory.txt exists.
+    if not os.path.exists("inventory.txt"):
+
+        # If the file does not exist,
+        # start with an empty order list.
+        return []
+
+    # Open inventory.txt in read mode.
+    with open("inventory.txt", "r") as file:
+
+        # Read all lines from the file.
+        lines = file.readlines()
+
+    # Create an empty list to store the order history.
+    history = []
+
+    # Read every line in the file.
+    for line in lines:
+
+        # Remove the newline character and extra spaces.
+        line = line.strip()
+
+        # Only add non-empty lines to the history.
+        if line:
+            history.append(line)
+
+    # Return the complete order history.
+    return history
 
 
 # Requirement 3
-# calculate_tax(amount): A new requirement! This function takes a delivery amount and returns the tax (10% of that specific delivery). 
-def calculate_tax(amount):
-    tax = amount * 0.10
-    return tax
+# save_inventory(): Saves the order history to inventory.txt.
+def save_inventory(history):
 
-# git add modular_auditor.py
-# git commit -m "Add calculate_tax() function"
-# git status
-# git log
+    # Open inventory.txt in write mode.
+    # If the file does not exist, Python creates it.
+    # If it already exists, the old contents are replaced.
+    with open("inventory.txt", "w") as file:
+
+        # Write every order from the history list.
+        for order in history:
+
+            # Write the order and move to the next line.
+            file.write(order + "\n")
+
+
+# # Requirement 3
+# # load_inventory(): Loads the saved inventory total and transaction history.
+# def load_inventory():
+#     if not os.path.exists("inventory.txt"): # If inventory.txt DOES NOT exist in the current folder...
+#         return 0, [] # Start the inventory at 0, Start with an empty transaction history.
+
+#     with open("inventory.txt", "r") as file: # Open inventory.txt in "r" read mode.
+#         lines = file.readlines() # This takes everything inside inventory.txt and puts it into a Python list.
+#         # Example inventory.txt:
+#         # 350
+#         # 100,200,50
+#         # becomes approximately:
+#         # lines = ["350\n", "100,200,50"]
+
+#     total = int(lines[0].strip()) # Take the first line of the file and convert text into an integer and store in variable "total".
+
+#     if len(lines) > 1 and lines[1].strip(): # If there is a second line AND that second line contains something...
+#         history = [int(value) for value in lines[1].strip().split(",")] # This line splits the second line of the file by commas and converts each value from a string into an integer, storing all the transaction amounts in the history list.
+#     else:
+#         history = [] # If the file doesn't have a second line, or the second line is empty: return empty history
+
+#     return total, history # Return BOTH pieces of information to the main program:
+#                           # total = the saved inventory total
+#                           # history = the saved list of transaction amounts
 
 
 # Requirement 4
-# generate_report(total_units, failed_attempts): A dedicated function to print the final summary.
-def generate_report(total_units, failed_attempts):
-    print("\n--- Inventory Report ---")
-    print(f"Total Units Processed: {total_units}")
-    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+# generate_report(): Displays the final contents of inventory.txt.
+def generate_report(history):
 
-# git add modular_auditor.py
-# git commit -m "Add generate_report() function"
-# git status
-# git log
+    # Display the report heading.
+    print("\n--- Final Inventory Report ---")
 
+    # Display the total number of orders.
+    print(f"\nTotal Orders: {len(history)}")
 
-# Requirement 5
-# load_inventory(): Loads the saved inventory total and transaction history.
-def load_inventory():
-    if not os.path.exists("inventory.txt"): # If inventory.txt DOES NOT exist in the current folder...
-        return 0, [] # Start the inventory at 0, Start with an empty transaction history.
+    # Check whether there are any orders.
+    if not history:
+        print("No orders found.")
+        return
 
-    with open("inventory.txt", "r") as file: # Open inventory.txt in "r" read mode.
-        lines = file.readlines() # This takes everything inside inventory.txt and puts it into a Python list.
-        # Example inventory.txt:
-        # 350
-        # 100,200,50
-        # becomes approximately:
-        # lines = ["350\n", "100,200,50"]
-
-    total = int(lines[0].strip()) # Take the first line of the file and convert text into an integer and store in variable "total".
-
-    if len(lines) > 1 and lines[1].strip(): # If there is a second line AND that second line contains something...
-        history = [int(value) for value in lines[1].strip().split(",")] # This line splits the second line of the file by commas and converts each value from a string into an integer, storing all the transaction amounts in the history list.
-    else:
-        history = [] # If the file doesn't have a second line, or the second line is empty: return empty history
-
-    return total, history # Return BOTH pieces of information to the main program:
-                          # total = the saved inventory total
-                          # history = the saved list of transaction amounts
-
-
-# Requirement 6
-# save_inventory(): Saves the inventory total and transaction history.
-def save_inventory(total, history):
-    # Create/open inventory.txt in write mode ("w").
-    # "w" means we will write the latest inventory information into the file.
-    # If the file does not exist, Python will create it.
-    # If the file already exists, its old contents will be replaced.
-    with open("inventory.txt", "w") as file:
-
-        # Convert the total inventory from an integer to a string
-        # and write it as the first line of inventory.txt.
-        # "\n" moves to the next line.
-        file.write(str(total) + "\n")
-
-        # Convert every value in the history list into a string,
-        # join them together with commas, and write them as the second line.
-        # Example: [100, 200, 50] becomes "100,200,50"
-        file.write(",".join(str(value) for value in history))
+    # Display every order in the inventory.
+    for order in history:
+        print(order)
 
 
 # Main program
-# Initialize Requirements
-inventory, history = load_inventory() # Initialize the inventory to call the function
-deliveries_processed = 0 # Track the number of valid deliveries
-failed_entries = 0 # Track the number of failed/rejected entries
+# Load the previously saved order history.
+history = load_inventory()
 
+
+
+# # Requirement Testing
+# # Create a list to store every valid transaction amount entered.
+# transaction_history = []
+
+
+
+# Display the existing orders.
+print("\nCurrent Orders:")
+
+# Display every order stored in the history list.
+for order in history:
+    print(order)
+
+# Continue asking the user for new orders.
 while True:
-    stock = get_valid_input()
 
-    if stock == "quit":
-        # Save the current inventory total and transaction history
-        # into inventory.txt before ending the program.
-        save_inventory(inventory, history)
+    # Get the product name and quantity.
+    result = get_valid_input()
 
-        # Exit the while loop because the user wants to quit.
+    # If the user types "quit", stop the program.
+    if result == "quit":
+        save_inventory(history)
         break
 
-    if stock is None:
-        failed_entries += 1
+    # If the input is invalid, ask again.
+    if result is None: # Exits the entire function and sends None back to the main program.
         continue
 
-    inventory = process_delivery(inventory, stock)
+    # Separate the product name and quantity.
+    product_name, quantity = result
 
-    tax = calculate_tax(stock)
+    # Generate the next order ID.
+    # 1001 is the first order ID.
+    order_id = 1001 + len(history)
 
-    history.append(stock)
+    # Create the new order as a string.
+    new_order = f"{order_id}, {product_name}, {quantity}"
 
-    deliveries_processed += 1
+    # Add the new order to the history list.
+    history.append(new_order)
 
-    print(f"Current inventory: {inventory}")
-    print(f"Tax for this delivery: {tax}")
-    # print(f"Transaction History: {history}") Track transaction history
 
-    if inventory > 500:
-        print("Alert: Overstock! Inventory exceeds 500 units.")
-        break
 
-generate_report(deliveries_processed, failed_entries)
+    # # Requirement Testing
+    # # Store the valid transaction amount in the history list.
+    # transaction_history.append(quantity)
+
+    # # Display the transaction history for testing.
+    # print(f"Transaction History: {transaction_history}")
+
+
+
+    # Display the newly added order.
+    print("\nNew Order Added:")
+    print(new_order)
+
+    # Save the updated order history to inventory.txt.
+    save_inventory(history)
+
+    # Tell the user that the order was saved.
+    print("\nOrder successfully saved to inventory.txt")
+
+
+# Display the final inventory report.
+generate_report(history)
 
 # git add modular_auditor.py
 # git commit -m "Add Complete modular auditor inventory"
