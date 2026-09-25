@@ -3,3 +3,6 @@
 1003, USB Cable, 3
 1004, Laptop Stand, 4
 1005, Mouse, 5
+1006, Screen Protector, 3
+1007, Charging Cable, 4
+1008, HDMI Cable, 2
