@@ -3,26 +3,35 @@
 # Requirement 1: Data Representation
 # Store each product as a dictionary inside a list.
 
-inventory = [
-    {
-        "id": "P001",
-        "name": "Laptop",
-        "price": 1200.00,
-        "stock": 15
-    },
-    {
-        "id": "P002",
-        "name": "Mouse",
-        "price": 25.50,
-        "stock": 40
-    },
-    {
-        "id": "P003",
-        "name": "Keyboard",
-        "price": 45.00,
-        "stock": 25
-    }
-]
+import json # allows Python to read and write JSON files.
+import os # check whether a file exists.
+
+# Requirement 3: Data Persistence
+# Load inventory from inventory.json.
+def load_inventory():
+    # Check whether inventory.json exists.
+    if not os.path.exists("inventory.json"):
+        print("inventory.json not found.")
+        print("Starting with an empty inventory.")
+        return []
+
+    # Open the JSON file in read mode.
+    with open("inventory.json", "r") as file:
+        inventory = json.load(file)
+
+    print("\ninventory.json found.")
+    print("Inventory loaded successfully.")
+
+    return inventory
+
+
+# Save inventory to inventory.json.
+def save_inventory(inventory):
+    # Open the JSON file in write mode.
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file, indent=4)
+
+    print("Inventory saved successfully to inventory.json.")
 
 
 # Display all products in the inventory.
@@ -45,10 +54,14 @@ def display_all():
     print("-" * 60)
 
 
-# Test the inventory list and display function.
+# Main program
 if __name__ == "__main__":
     print("=" * 50)
     print("INVENTORY MANAGEMENT SYSTEM")
     print("=" * 50)
 
+    # Load saved inventory.
+    inventory = load_inventory()
+
+    # Display the loaded inventory.
     display_all()
