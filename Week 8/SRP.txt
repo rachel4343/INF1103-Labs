@@ -17,3 +17,108 @@ Main Program (for now also creates the products and inventory)
 File Handling 
     • Loads inventory data 
     • Saves inventory data
+
+
+
+
+Reflection Questions:
+1. What is the difference between a class and an object? 
+Class = blueprint e.g. class Product:
+Object = actual instance created from blueprint e.g. product1 = Product(...)
+
+2. Why is Product a suitable class for this system? 
+Because the system contains products and each product has its own: ID, name, price, stock and can perform product-related operations.
+
+3. What data belongs inside a Product object? 
+product_id
+name
+price
+stock
+
+4. Why should the Product class manage its own stock rather than the main program directly changing it? 
+Because of encapsulation.
+Instead of external code directly modifying the internal stock: product.__stock = 100
+we use: product.update_stock(100)
+This gives Product control over how its state changes.
+
+5. What does encapsulation mean in your program? 
+Keeping a Product's internal attributes hidden and allowing external code to interact with the Product through its public methods.
+
+6. What is the responsibility of the Product class? 
+Represent and manage one product.
+
+7. What is the responsibility of the Inventory class? 
+Manage a collection of Product objects.
+
+8. How does separating these responsibilities demonstrate the Single Responsibility Principle? 
+Instead of one huge program doing everything:
+Product → product
+Inventory → collection
+Main → user interaction
+File handling → files
+Each part has a clear responsibility.
+
+9. What information does the main program need to know about a Product? 
+Only the public interface, such as:
+product.update_stock(...)
+product.display_information()
+It doesn't need to know exactly how Product stores its data internally.
+
+10. What information about the internal implementation of Product does the main program not need to know? 
+For example, main doesn't need to know that Product internally has: self.__stock
+or how display_information() is implemented.
+That's the benefit of encapsulation.
+
+
+
+
+Notes for this lab:
+**Name mangling**
+Python internally changes a double-underscore attribute name to include the class name.
+
+__stock
+   ↓
+_Product__stock
+
+so, product.__stock = 50
+
+does not modify the original private __stock. It creates a different attribute.
+
+**Encapsulation**
+protecting an object's internal data and controlling how other code interacts with it.
+
+The key idea is:
+Don't let outside code freely manipulate important internal data. Give it methods to interact with that data.
+
+| Concept | Meaning |
+|---|---|
+| **Encapsulation** | Design principle of controlling access to an object's internal data |
+| `__stock` | Indicates that `stock` is intended to be private/internal |
+| **Name mangling** | Python changes `__stock` into `_Product__stock` internally |
+| `update_stock()` | Public method used to safely/control how stock changes |
+
+
+
+
+             Product
+          /            \
+    attributes        methods
+       |                 |
+    product_id       update_stock()
+    name             display_information()
+    price
+    stock
+
+              ↓
+
+           Inventory
+               |
+        list of Product
+               |
+       add/search/display
+
+               ↓
+
+             main
+               |
+          menu + input
