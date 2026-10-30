@@ -11,6 +11,8 @@ from inventory import Inventory                                      # Import th
 
 
 inventory = Inventory()                                              # Create an instance of the Inventory class to manage the collection of products.
+inventory.load_inventory("inventory.json")                           # Load the inventory from a JSON file named "inventory.json". If the file does not exist, it will start with an empty inventory.
+
 
 while True:
     print("\n=== INVENTORY MANAGEMENT SYSTEM ===")
