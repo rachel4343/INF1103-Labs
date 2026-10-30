@@ -1,0 +1,19 @@
+The responsibilities for each class (Single Responsibility Principle) should be: 
+Product 
+    • Stores product information 
+    • Manages its own state 
+ 
+Inventory 
+    • Stores products 
+    • Adds products 
+    • Searches products 
+    • Displays products 
+ 
+Main Program (for now also creates the products and inventory) 
+    • Displays the menu 
+    • Gets user input 
+    • Calls the appropriate Inventory methods 
+ 
+File Handling 
+    • Loads inventory data 
+    • Saves inventory data
