@@ -21,7 +21,7 @@ class Inventory:
 
     def display_all(self):                                # This public method displays information for all products in the inventory.
         if len(self.__products) == 0:
-            print("Inventory is empty.")
+            print("\nInventory is empty.")
             return
 
         for product in self.__products:                   # Iterate through the list of products and call the display_information method for each product.
@@ -44,7 +44,7 @@ class Inventory:
                 self.add_product(product)
 
         except FileNotFoundError:
-            print("Inventory file not found. Starting with an empty inventory.")
+            print("\nInventory file not found. Starting with an empty inventory.")
 
 
     def save_inventory(self, filename):                   # This public method saves the inventory to a JSON file.
