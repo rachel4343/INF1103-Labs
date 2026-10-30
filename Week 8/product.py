@@ -8,7 +8,10 @@ class Product:
         self.__name = name                                  # Private attribute for the product name.
         self.__price = price                                # Private attribute for the product price.
         self.__stock = stock                                # Private attribute for the product stock.
-
+    
+    def get_product_id(self):                               # This public method returns the product ID of the product.
+        return self.__product_id                            # Return the private product ID attribute.
+    
     def update_stock(self, quantity):                       # This public method updates the stock quantity of the product.
         self.__stock = quantity                             # The stock attribute is updated to the new quantity provided by the parameter.
 
