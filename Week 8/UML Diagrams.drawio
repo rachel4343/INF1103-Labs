@@ -1,0 +1,34 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="LoE7pBURU-ClNmM274lD">
+    <mxGraphModel dx="419" dy="336" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S5eBA7Pk1ue8zRsB8cBm-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="410" as="sourcePoint" />
+            <mxPoint x="240" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S5eBA7Pk1ue8zRsB8cBm-5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="410" as="sourcePoint" />
+            <mxPoint x="240" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S5eBA7Pk1ue8zRsB8cBm-8" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="80" y="240" as="sourcePoint" />
+            <mxPoint x="80" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S5eBA7Pk1ue8zRsB8cBm-18" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;Product&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;pre dir=&quot;ltr&quot;&gt;&lt;code&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;font&gt;  -   __product_id : String&lt;br&gt;  -   __name       : String&lt;br&gt;  -   __price      : float&lt;br&gt;  -   __stock      : int    &lt;/font&gt;&lt;font style=&quot;&quot;&gt;  &lt;/font&gt;&lt;/font&gt;&lt;/code&gt;&lt;/pre&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;pre dir=&quot;ltr&quot; style=&quot;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;code style=&quot;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;  +  get_product_id() : String&lt;/font&gt;&lt;br&gt;&lt;/code&gt;  +  update_stock(quantity : int) : void&lt;br&gt;  +  display_information() : void&lt;br&gt;  +  to_dict() : dict &lt;/font&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;br&gt;      &lt;/font&gt;&lt;/pre&gt;" vertex="1">
+          <mxGeometry height="190" width="220" x="50" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="S5eBA7Pk1ue8zRsB8cBm-19" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;Inventory&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;pre dir=&quot;ltr&quot;&gt;&lt;code&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;font&gt;  -   __products : List[Product]&lt;/font&gt;&lt;/font&gt;&lt;/code&gt;&lt;/pre&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;pre dir=&quot;ltr&quot; style=&quot;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;code style=&quot;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;  +  add_product(product : Product) : void&lt;/font&gt;&lt;br&gt;&lt;/code&gt;  +  search_product(product_id : String) : Product&lt;br&gt;  +  display_all() : void&lt;br&gt;  +  load_inventory(filename : String) : void&lt;br&gt;  +  &lt;/font&gt;&lt;font face=&quot;Helvetica&quot;&gt;save_inventory(filename : String) : void&lt;br&gt;      &lt;/font&gt;&lt;/pre&gt;" vertex="1">
+          <mxGeometry height="160" width="270" x="310" y="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
