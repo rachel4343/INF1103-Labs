@@ -1,5 +1,7 @@
 #  An Inventory is responsible for managing a collection of Products.
 
+import json
+
 from product import Product
 
 
@@ -25,3 +27,7 @@ class Inventory:
         for product in self.__products:                   # Iterate through the list of products and call the display_information method for each product.
             product.display_information()
             print()
+
+    def save_inventory(self, filename):                   # This public method saves the inventory to a JSON file.
+        with open(filename, 'w') as file:                 # Open the specified file in write mode.
+            json.dump([product.to_dict() for product in self.__products], file, indent=4)  # Convert each Product to a dictionary and save the list to the file in JSON format.
