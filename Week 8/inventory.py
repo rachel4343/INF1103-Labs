@@ -28,6 +28,25 @@ class Inventory:
             product.display_information()
             print()
 
+    def load_inventory(self, filename):                   # This public method loads the inventory from a JSON file.
+        try:
+            with open(filename, 'r') as file:             # Open the specified file in read mode.
+                data = json.load(file)
+
+            for item in data:                             # Convert each dictionary in the loaded data back into a Product object and add it to the inventory.
+                product = Product(
+                    item["product_id"],
+                    item["name"],
+                    item["price"],
+                    item["stock"]
+                )
+
+                self.add_product(product)
+
+        except FileNotFoundError:
+            print("Inventory file not found. Starting with an empty inventory.")
+
+
     def save_inventory(self, filename):                   # This public method saves the inventory to a JSON file.
         with open(filename, 'w') as file:                 # Open the specified file in write mode.
             json.dump([product.to_dict() for product in self.__products], file, indent=4)  # Convert each Product to a dictionary and save the list to the file in JSON format.
