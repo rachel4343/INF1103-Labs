@@ -20,3 +20,11 @@ class Product:
         print(f"Name: {self.__name}")                       # Display the product name.
         print(f"Price: ${self.__price:.2f}")                # Display the product price formatted to 2 decimal places.
         print(f"Stock: {self.__stock}")                     # Display the product stock.
+
+    def to_dict(self):                                      # This public method returns a dictionary representation of the product's attributes, which is useful for saving or exporting product data.
+        return {
+            "product_id": self.__product_id,
+            "name": self.__name,
+            "price": self.__price,
+            "stock": self.__stock
+        }
