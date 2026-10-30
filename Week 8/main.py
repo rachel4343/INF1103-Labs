@@ -62,12 +62,12 @@ while True:
             print("Product not found.")
 
     elif choice == "5":
-        # Save inventory to a file (not implemented in this snippet)
+        inventory.save_inventory("inventory.json")
         print("Inventory saved successfully.")
 
     elif choice == "6":
         print("Goodbye! Exiting the program...")
         break
-    
+
     else:
         print("Invalid choice. Please try again.")
