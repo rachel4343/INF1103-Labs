@@ -1,0 +1,91 @@
+8. Reflection Task
+Understanding Inheritance and OCP better:
+• Add a new product type called SubscriptionProduct to your InventoryManagementSystem 
+• Ideally you should be able to do this without changing the existing Product class or modifying any product 
+handling code. 
+• Reflection: How well does your current design support adding a new product type? Which parts of the existing 
+system needed to change? How could the design be enhanced to reduce or remove those required changes 
+when adding a new product type? (hint: Not an inheritance solution in this case! Might be tricky, hence the task 
+is optional!) 
+
+Answer:
+Adding `SubscriptionProduct` showed that the current design supports extension reasonably well through inheritance. I was able to create `SubscriptionProduct` as another subclass 
+of the abstract `Product` class and implement its own attributes and behaviours, such as its subscription duration and fulfilment information. I did not need to modify the existing 
+`Product`, `PhysicalProduct`, or `DigitalProduct` classes. This demonstrates the benefit of using an abstract base class because all product types share a common structure while 
+subclasses can provide their own specialised behaviour.
+
+However, the system does not fully follow the Open-Closed Principle (OCP). OCP states that software should be open for extension but closed for modification. Although I could extend 
+the system by creating `SubscriptionProduct`, some existing product-handling code still had to be modified. For example, the product creation logic in `main.py` needed another option 
+for creating a `SubscriptionProduct`. The inventory loading logic also needed to recognise the new subscription product type and construct the correct object when loading data from 
+the JSON file. This means that the inheritance structure supports OCP quite well, but the product creation and loading parts of the system are still dependent on the specific concrete product types. 
+If more product types were added in the future, these sections would continue growing with additional `if`/`elif` conditions.
+
+The design could be enhanced by separating object creation from the main program and inventory management logic. For example, a Factory approach could centralise the creation of different 
+product objects. The rest of the system could then request a product to be created without containing all of the construction logic itself. This would reduce the number of existing components 
+that need to be changed whenever a new product type is introduced.
+
+Overall, this task helped me understand that inheritance alone does not automatically make a system fully compliant with OCP. Inheritance makes it easier to extend the product hierarchy, but 
+other parts of the program, especially object creation and data loading, must also be designed to avoid depending directly on every concrete product type.
+
+| Part | OCP support | Why? |
+|---|---|---|
+| `Product` | ✅ Good | We can create `SubscriptionProduct` without changing `Product`. |
+| `PhysicalProduct` | ✅ Good | Doesn't need modification. |
+| `DigitalProduct` | ✅ Good | Doesn't need modification. |
+| `CanBeShipped` | ✅ Good | Subscription doesn't need shipping, so no change required. |
+| `main.py` | ⚠️ Not ideal | Must add another product-type option/condition. |
+| `Inventory.load_inventory()` | ⚠️ Not ideal | Must add logic to reconstruct `SubscriptionProduct`. |
+
+
+
+
+Notes from Lab:
+OCP — Open-Closed Principle
+OCP = Open for extension, closed for modification.
+Meaning:
+We should be able to add new functionality/classes without having to keep changing existing working code.
+
+
+Abstract:
+Every product must be either physical or digital.
+So they don't want this to be allowed anymore:
+product1 = Product("P001", "Something", 10.00, 5)
+An abstract method is basically a required method.
+It says: "Every child class MUST implement this method."
+
+| | Abstract Class `Product` | Interface-style ABC `CanBeShipped` |
+|---|---|---|
+| Represents | What something **is** | What something **can do** |
+| Example | Product | CanBeShipped |
+| Relationship | **IS-A** | **CAN-DO** |
+| Contains | Common attributes + methods | Required capability methods |
+| Example attribute | `price`, `stock` | None |
+| Example method | `display_information()` | `calculate_shipping_cost()` |
+| Can have implementation? | Yes | Usually just the contract in this lab |
+| Purpose | Share common structure/behaviour | Enforce a capability |
+
+
+Inheritance:
+Inheritance is an OOP concept where a child class inherits attributes and methods from a parent class. This allows multiple related classes to share common code instead of repeating it. 
+The child class has an IS-A relationship with the parent. For example, PhysicalProduct IS-A Product, so PhysicalProduct can inherit common attributes such as product_id, name, price, and 
+stock, as well as methods such as update_stock() from Product.
+
+A child class can also extend or customise what it inherits. It can add its own attributes and methods, such as weight for PhysicalProduct, or override an inherited method to provide 
+specialised behaviour. For example, PhysicalProduct can override display_information() so that it displays the normal product information plus its weight. This makes inheritance useful 
+for code reuse while still allowing each child class to behave differently.
+
+Interface-style ABC:
+An interface-style ABC (Abstract Base Class) represents what a class can do, rather than what the class is. It defines a contract or capability by specifying methods that an implementing 
+class is required to provide. For example, CanBeShipped represents the capability of being shipped and can require a method such as calculate_shipping_cost(). Unlike the Product abstract 
+class, it does not need common product attributes such as price, stock, or name.
+
+When a class agrees to an interface-style ABC, it must implement the interface's required abstract methods. For example, PhysicalProduct can adopt CanBeShipped because a physical product 
+can be shipped, so it must provide calculate_shipping_cost(). A DigitalProduct, however, does not need this capability because it is delivered digitally. Therefore, an interface helps us 
+give specific capabilities only to classes that need them, instead of forcing every child class to contain methods that do not make sense for it.
+"Any class that implements/adopts the interface must provide those methods."
+
+
+
+Important: Remember to stick with single class inheritance. PhysicalProduct should inherit from Product, and 
+CanBeShipped should remain a separate interface-style ABC. Avoid multiple inheritance relationships, but a single 
+inheritance and multiple interface relationships is ok!
