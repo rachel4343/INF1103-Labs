@@ -2,7 +2,13 @@
 # Product class should have one clear responsibility: Represent and manage a product. 
 # The constructor initializes these attributes when a new Product object is created.
 
-class Product:
+from abc import ABC, abstractmethod                         # The Product class inherits from the ABC (Abstract Base Class) module, allowing it to define abstract methods that must be implemented by any subclass. This enforces a contract for subclasses to provide specific functionality, ensuring consistency and adherence to the principles of object-oriented programming.
+
+class Product(ABC):
+    @abstractmethod                                         # The @abstractmethod decorator is used to define an abstract method, which means that any subclass of Product must implement this method. Every child class MUST provide its own version of this method. This enforces a contract for subclasses to provide specific functionality related to fulfilment information.
+    def get_fulfilment_info(self):                          # The get_fulfilment_info method is defined as an abstract method, meaning that any subclass of Product must implement this method. This enforces a contract for subclasses to provide specific functionality related to fulfilment information, ensuring consistency and adherence to the principles of object-oriented programming.
+        pass                                                # The pass statement is used as a placeholder for the abstract method, indicating that it does not have an implementation in the Product class. Subclasses must provide their own implementation of this method to fulfill the contract defined by the abstract base class.
+
     def __init__(self, product_id, name, price, stock):     # The constructor method initializes the Product object with the provided attributes.
         self.__product_id = product_id                      # The __ indicates that these attributes are intended to be private.
         self.__name = name                                  # Private attribute for the product name.
