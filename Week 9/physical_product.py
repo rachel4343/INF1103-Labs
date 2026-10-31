@@ -1,9 +1,10 @@
 # This is the PhysicalProduct class that inherits from the Product class. 
 # It adds an additional attribute for weight and overrides the display_information method to include weight information.
 from product import Product
+from can_be_shipped import CanBeShipped                            # The PhysicalProduct class inherits from the CanBeShipped interface, allowing it to provide an implementation for the calculate_shipping_cost method. This enables polymorphism, where different classes can provide their own implementation of the shipping cost calculation while adhering to the same interface.
 
 
-class PhysicalProduct(Product):                                    # The PhysicalProduct class inherits from the Product class, allowing it to utilize the attributes and methods of the Product class while adding its own unique attribute for weight.
+class PhysicalProduct(Product, CanBeShipped):                      # The PhysicalProduct class inherits from the Product class, allowing it to utilize the attributes and methods of the Product class while adding its own unique attribute for weight. And it also inherits from the CanBeShipped interface, allowing it to provide an implementation for the calculate_shipping_cost method.
     def __init__(self, product_id, name, price, stock, weight):    # The constructor method initializes the PhysicalProduct object with the provided attributes, including weight.
         super().__init__(product_id, name, price, stock)           # The super() function is used to call the constructor of the parent Product class, ensuring that the product_id, name, price, and stock attributes are initialized properly. It follows the principle of single responsibility by delegating the initialization of common product attributes to the Product class.
         self.__weight = weight                                     # The __weight attribute is a private attribute that stores the weight of the physical product, encapsulating this information within the PhysicalProduct class.
@@ -16,3 +17,6 @@ class PhysicalProduct(Product):                                    # The Physica
 
     def get_fulfilment_info(self):                                 # This method provides fulfilment information specific to physical products. It returns a string indicating that the product requires physical shipping. This method is an implementation of the abstract method defined in the Product class, fulfilling the contract established by the abstract base class and ensuring that subclasses provide specific functionality related to fulfilment information.
         return "This product requires physical shipping."          # Return a string indicating that the product requires physical shipping, providing fulfilment information specific to physical products.
+
+    def calculate_shipping_cost(self):                             # This method provides an implementation for the calculate_shipping_cost method defined in the CanBeShipped interface. It calculates the shipping cost based on the weight of the physical product, returning a cost value.
+        return self.__weight * 2                                   # Return the calculated shipping cost based on the weight of the physical product, providing a specific implementation for the shipping cost calculation as required by the CanBeShipped interface.
