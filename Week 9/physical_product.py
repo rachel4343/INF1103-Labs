@@ -9,5 +9,10 @@ class PhysicalProduct(Product):                                    # The Physica
         self.__weight = weight                                     # The __weight attribute is a private attribute that stores the weight of the physical product, encapsulating this information within the PhysicalProduct class.
 
     def display_information(self):                                 # This method overrides the display_information method from the Product class to include weight information. It first calls the parent class's display_information method to display the common product attributes, and then it adds the weight information specific to physical products. This demonstrates polymorphism, where the same method name can have different implementations in different classes.
+        # Run the parent's display_information() first.
         super().display_information()                              # The super() function is used to call the display_information method of the parent Product class, ensuring that the common product attributes are displayed before adding the weight information. This maintains a clear separation of concerns and adheres to the principle of single responsibility by allowing each class to manage its own specific attributes and behaviors.
+        # Adds the PhysicalProduct-specific information
         print(f"Weight: {self.__weight} kg")
+
+    def get_fulfilment_info(self):                                 # This method provides fulfilment information specific to physical products. It returns a string indicating that the product requires physical shipping. This method is an implementation of the abstract method defined in the Product class, fulfilling the contract established by the abstract base class and ensuring that subclasses provide specific functionality related to fulfilment information.
+        return "This product requires physical shipping."          # Return a string indicating that the product requires physical shipping, providing fulfilment information specific to physical products.
