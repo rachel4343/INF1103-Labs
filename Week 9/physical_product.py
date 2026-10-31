@@ -23,6 +23,6 @@ class PhysicalProduct(Product, CanBeShipped):                      # The Physica
 
     def to_dict(self):                                             # This public method returns a dictionary representation of the physical product's attributes, which can be useful for saving or exporting product data. It extends the to_dict method from the Product class to include the product type and weight information specific to physical products.
         data = super().to_dict()                                   # The super() function is used to call the to_dict method of the parent Product class, ensuring that the common product attributes are included in the dictionary representation before adding the product type and weight information specific to physical products. 
-        data["product_type"] = "physical"                          # Add the product type information to the dictionary, indicating that this is a physical product.
+        data["type"] = "physical"                                  # Add the product type information to the dictionary, indicating that this is a physical product.
         data["weight"] = self.__weight                             # Add the weight information to the dictionary, providing a complete representation of the physical product's attributes for saving or exporting purposes.
         return data
