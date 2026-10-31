@@ -19,6 +19,6 @@ class DigitalProduct(Product):                                          # The Di
 
     def to_dict(self):                                                  # This public method returns a dictionary representation of the digital product's attributes, which can be useful for saving or exporting product data. It extends the to_dict method from the Product class to include the product type and download size information specific to digital products.
         data = super().to_dict()                                        # The super() function is used to call the to_dict method of the parent Product class, ensuring that the common product attributes are included in the dictionary representation before adding the product type and download size information specific to digital products.
-        data["product_type"] = "digital"                                # Add the product type information to the dictionary, indicating that this is a digital product.
+        data["type"] = "digital"                                        # Add the product type information to the dictionary, indicating that this is a digital product.
         data["download_size"] = self.__download_size                    # Add the download size information to the dictionary, providing a complete representation of the digital product's attributes for saving or exporting purposes.
         return data
