@@ -14,5 +14,13 @@
         "stock": 45,
         "type": "digital",
         "download_size": 400.0
+    },
+    {
+        "product_id": "P003",
+        "name": "Phone",
+        "price": 2000.0,
+        "stock": 134,
+        "type": "physical",
+        "weight": 3.0
     }
 ]

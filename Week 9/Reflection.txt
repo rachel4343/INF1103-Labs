@@ -89,3 +89,6 @@ give specific capabilities only to classes that need them, instead of forcing ev
 Important: Remember to stick with single class inheritance. PhysicalProduct should inherit from Product, and 
 CanBeShipped should remain a separate interface-style ABC. Avoid multiple inheritance relationships, but a single 
 inheritance and multiple interface relationships is ok!
+
+
+docker run --rm -it -v "${PWD}:/app" -w /app inf1103-labs-smart-auditor python main.py
