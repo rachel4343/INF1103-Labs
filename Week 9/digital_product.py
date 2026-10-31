@@ -16,3 +16,9 @@ class DigitalProduct(Product):                                          # The Di
 
     def get_fulfilment_info(self):                                      # This method provides fulfilment information specific to digital products. It returns a string indicating that the product is delivered digitally. This method is an implementation of the abstract method defined in the Product class, fulfilling the contract established by the abstract base class and ensuring that subclasses provide specific functionality related to fulfilment information.
         return "This product is delivered digitally."                   # Return a string indicating that the product is delivered digitally, providing fulfilment information specific to digital products.
+
+    def to_dict(self):                                                  # This public method returns a dictionary representation of the digital product's attributes, which can be useful for saving or exporting product data. It extends the to_dict method from the Product class to include the product type and download size information specific to digital products.
+        data = super().to_dict()                                        # The super() function is used to call the to_dict method of the parent Product class, ensuring that the common product attributes are included in the dictionary representation before adding the product type and download size information specific to digital products.
+        data["product_type"] = "digital"                                # Add the product type information to the dictionary, indicating that this is a digital product.
+        data["download_size"] = self.__download_size                    # Add the download size information to the dictionary, providing a complete representation of the digital product's attributes for saving or exporting purposes.
+        return data
