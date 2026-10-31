@@ -34,3 +34,8 @@ class Product(ABC):
             "price": self.__price,
             "stock": self.__stock
         }
+
+
+# product = Product("P001", "Test", 10, 5)
+# TypeError: Can't instantiate abstract class Product without an implementation for abstract method 'get_fulfilment_info'
+# This is because the Product class is an abstract class and cannot be instantiated directly. It serves as a blueprint for other classes (like PhysicalProduct and DigitalProduct) that inherit from it and implement the abstract method get_fulfilment_info.
