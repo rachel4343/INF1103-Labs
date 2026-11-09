@@ -1,0 +1,10 @@
+# This is the CanBeShipped interface that defines a contract for classes that can be shipped. It contains an abstract method calculate_shipping_cost that must be implemented by any class that inherits from this interface. This allows for polymorphism, where different classes can provide their own implementation of the shipping cost calculation while adhering to the same interface.
+# Interface-style abstract base class.
+from abc import ABC, abstractmethod
+
+
+class CanBeShipped(ABC):                 # The CanBeShipped class inherits from the ABC (Abstract Base Class) module, allowing it to define abstract methods that must be implemented by any subclass. This enforces a contract for subclasses to provide specific functionality related to shipping cost calculation, ensuring consistency and adherence to the principles of object-oriented programming.
+
+    @abstractmethod                      # The @abstractmethod decorator is used to define an abstract method, which means that any subclass of CanBeShipped must implement this method. Every child class MUST provide its own version of this method. This enforces a contract for subclasses to provide specific functionality related to shipping cost calculation.
+    def calculate_shipping_cost(self):   # The calculate_shipping_cost method is defined as an abstract method, meaning that any subclass of CanBeShipped must implement this method. This enforces a contract for subclasses to provide specific functionality related to shipping cost calculation, ensuring consistency and adherence to the principles of object-oriented programming.
+        pass                             # The pass statement is used as a placeholder for the abstract method, indicating that it does not have an implementation in the CanBeShipped class. Subclasses must provide their own implementation of this method to fulfill the contract defined by the abstract base class.
