@@ -1,3 +1,7 @@
+# Order class represents a customer's order, which can contain multiple OrderLine objects. Each OrderLine represents a specific product and its quantity in the order. 
+# The Order class provides methods to add and remove OrderLine objects, calculate the total cost of the order, and display the order details.
+# Order class demonstrates composition, as it is composed of OrderLine objects, and the lifetime of the OrderLine objects is tied to the lifetime of the Order object. 
+# When an Order is deleted, its associated OrderLine objects are also deleted.
 
 from product import Product
 from order_line import OrderLine
