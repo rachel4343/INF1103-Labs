@@ -30,7 +30,7 @@ class Inventory:
         return None
 
     def display_all_products(self) -> None: # This method iterates through all Product objects in the Inventory and calls their display_information() method to print their details. It provides a way to view the information of all products managed by the Inventory.
-        for product in self.products:
+        for product in self.products:       # LSP: They should accept and manage Product objects rather than checking for specific subclasses unnecessarily.
             product.display_information()
 
     def load_inventory(self, filename):
