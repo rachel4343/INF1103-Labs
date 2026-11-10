@@ -4,6 +4,7 @@ from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
 from inventory import Inventory
 from order import Order
+from product import Product
 
 # # 2. Implement association: Supplier and Product
 # # 1. Create Supplier independently
@@ -171,4 +172,27 @@ order1.remove_order_line(0) # Removes the Laptop OrderLine.
 
 # Displays the remaining OrderLines and recalculates the total based on them.
 print("\nOrder 1 after removing its first OrderLine:")
-order1.display_order()                
+order1.display_order()     
+print("\n")
+
+
+
+# 6.2 Test substitutability
+def show_product_details(product: Product) -> None:   # This means the function expects a Product object.
+    product.display_information()
+    print(product.get_fulfilment_info())
+
+# However, PhysicalProduct and DigitalProduct inherit from Product, so we can pass either subclass to this function.
+show_product_details(laptop)
+show_product_details(ebook := DigitalProduct("D001", "E-Book", 10.0, 100, 5.0, supplier1))
+
+# 6.2 Test with Inventory
+# Inventory accepts Product objects. It does not need to check whether each object is a PhysicalProduct or DigitalProduct.
+# Both subclasses can replace the parent Product wherever Product behaviour is expected. This demonstrates LSP through polymorphism.
+inventory = Inventory()
+inventory.add_product(laptop)
+inventory.add_product(mouse)
+inventory.add_product(ebook)
+
+print("\nAll products in inventory:")
+inventory.display_all_products()
