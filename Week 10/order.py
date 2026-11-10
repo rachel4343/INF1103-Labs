@@ -39,16 +39,12 @@ class Order:
 
     def display_order(self) -> None:
         print(f"Order ID: {self.order_id}")
+        print("-----------------------------")
 
         for order_line in self.order_lines:
-            print(
-                f"Product: {order_line.product.get_name()}"
-            )
-            print(
-                f"Quantity: {order_line.quantity}"
-            )
-            print(
-                f"Subtotal: ${order_line.calculate_subtotal():.2f}"
-            )
+            print(f"Product: {order_line.product.get_name()}")
+            print(f"Quantity: {order_line.quantity}")
+            print(f"Subtotal: ${order_line.calculate_subtotal():.2f}")
+            print("-----------------------------")
 
         print(f"Total: ${self.calculate_total():.2f}")
