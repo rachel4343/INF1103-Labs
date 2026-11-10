@@ -23,6 +23,9 @@ class Product(ABC):
 
     def get_name(self) -> str:                              # This public method returns the name of the product.
         return self.__name                                  # Return the private name attribute.
+
+    def get_price(self) -> float:                           # This public method returns the price of the product.
+        return self.__price                                 # Return the private price attribute.
     
     def update_stock(self, quantity):                       # This public method updates the stock quantity of the product.
         self.__stock = quantity                             # The stock attribute is updated to the new quantity provided by the parameter.
