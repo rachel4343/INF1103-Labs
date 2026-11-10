@@ -18,7 +18,7 @@ class Product(ABC):
         self.supplier: Supplier = supplier                  # The supplier attribute is an instance of the Supplier class, representing the supplier associated with the product. This establishes a relationship between the Product and Supplier classes, allowing for better organization and management of product and supplier information.
                                                             # This stores an actual Supplier object. This means we can do product.supplier.display_information() and it will call the display_information method of the Supplier class, allowing us to access and display the supplier's information directly from the product object. This is the association relationship.
     
-    def get_product_id(self):                               # This public method returns the product ID of the product.
+    def get_product_id(self) -> str:                        # This public method returns the product ID of the product.
         return self.__product_id                            # Return the private product ID attribute.
 
     def get_name(self) -> str:                              # This public method returns the name of the product.
@@ -26,22 +26,26 @@ class Product(ABC):
 
     def get_price(self) -> float:                           # This public method returns the price of the product.
         return self.__price                                 # Return the private price attribute.
-    
-    def update_stock(self, quantity):                       # This public method updates the stock quantity of the product.
+
+    def update_stock(self, quantity: int) -> None:          # This public method updates the stock quantity of the product.
         self.__stock = quantity                             # The stock attribute is updated to the new quantity provided by the parameter.
 
-    def display_information(self):                          # This public method displays the product's information in a formatted manner.
+    def display_information(self) -> None:                  # This public method displays the product's information in a formatted manner.
         print(f"ID: {self.__product_id}")                   # Display the product ID.
         print(f"Name: {self.__name}")                       # Display the product name.
         print(f"Price: ${self.__price:.2f}")                # Display the product price formatted to 2 decimal places.
         print(f"Stock: {self.__stock}")                     # Display the product stock.
+        
+        print("\nSupplier Information:")
+        self.supplier.display_information()                 # This calls the display_information method of the Supplier class to display the supplier's information associated with the product. This allows for easy access to the supplier's details directly from the product object, demonstrating the association relationship between Product and Supplier.
 
-    def to_dict(self):                                      # This public method returns a dictionary representation of the product's attributes, which can be useful for saving or exporting product data.
+    def to_dict(self) -> dict:                                      # This public method returns a dictionary representation of the product's attributes, which can be useful for saving or exporting product data.
         return {
             "product_id": self.__product_id,
             "name": self.__name,
             "price": self.__price,
-            "stock": self.__stock
+            "stock": self.__stock,
+            "supplier": self.supplier.to_dict()             # This calls the to_dict method of the Supplier class to get a dictionary representation of the supplier's attributes. This allows for easy serialization of the product and its associated supplier information into a format that can be saved or exported, such as JSON.
         }
 
 
