@@ -154,23 +154,16 @@ order2.display_order()
 # Check object relationships
 print("\nComposition checks:")
 
-# Check whether both orders have separate OrderLine objects
 # This checks whether the first OrderLine in Order 1 is the exact same object as the first OrderLine in Order 2.
 # Expected result: False. Why? Each Order creates its own OrderLine.
-
 # False, Different OrderLine objects.
 print("Same OrderLine object?", order1.order_lines[0] is order2.order_lines[0])
 
-# order1.order_lines[0] gets the first OrderLine (Laptop).
-# order1.order_lines[1] gets the second OrderLine (Mouse).
 
-# Check whether both OrderLines refer to the same Product object
 # This checks whether the Product referenced by each OrderLine is the exact same object.
 # Expected result: True. Why? Both OrderLines refer to the same Laptop Product object.
-
 # True, Same Product object.
 print("Same Product object?", order1.order_lines[0].product is order2.order_lines[0].product)
-
 
 
 # Remove an OrderLine from Order 1
