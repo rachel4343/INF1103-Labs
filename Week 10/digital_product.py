@@ -15,6 +15,12 @@ class DigitalProduct(Product):                                          # The Di
         # Adds the DigitalProduct-specific information
         print(f"Download Size: {self.__download_size} MB")
 
+        # Display fulfilment information
+        print(f"Fulfilment: {self.get_fulfilment_info()}")
+
+        print("\nSupplier Information:")
+        self.supplier.display_information()
+
     def get_fulfilment_info(self) -> str:                               # This method provides fulfilment information specific to digital products. It returns a string indicating that the product is delivered digitally. This method is an implementation of the abstract method defined in the Product class, fulfilling the contract established by the abstract base class and ensuring that subclasses provide specific functionality related to fulfilment information.
         return "This product is delivered digitally."                   # Return a string indicating that the product is delivered digitally, providing fulfilment information specific to digital products.
 
