@@ -5,6 +5,8 @@ from digital_product import DigitalProduct
 from inventory import Inventory
 from order import Order
 from product import Product
+from physical_product import PhysicalProduct                          
+from digital_product import DigitalProduct                            
 
 # # 2. Implement association: Supplier and Product
 # # 1. Create Supplier independently
@@ -105,15 +107,20 @@ from product import Product
 
 
 # 4. Implement composition: Order and OrderLine
-from supplier import Supplier
-from physical_product import PhysicalProduct
-from order import Order
-
 
 supplier1 = Supplier(
     "S001",
     "TechWorld",
     "sales@techworld.com"
+)
+
+mouse = PhysicalProduct(
+    "P002",
+    "Mouse",
+    20.0,
+    50,
+    0.2,
+    supplier1
 )
 
 laptop = PhysicalProduct(
@@ -125,12 +132,12 @@ laptop = PhysicalProduct(
     supplier1
 )
 
-mouse = PhysicalProduct(
-    "P002",
-    "Mouse",
-    20.0,
-    50,
-    0.2,
+ebook = DigitalProduct(
+    "D001",
+    "E-Book",
+    10.0,
+    100,
+    5.0,
     supplier1
 )
 
@@ -196,3 +203,17 @@ inventory.add_product(ebook)
 
 print("\nAll products in inventory:")
 inventory.display_all_products()
+print("\n")
+
+
+
+# 7.1 Use a common Product interface
+inventory = Inventory()
+
+inventory.add_product(laptop)
+inventory.add_product(ebook)
+
+
+for product in inventory.products:
+    product.display_information()
+    print(product.get_fulfilment_info())
