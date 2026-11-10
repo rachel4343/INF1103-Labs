@@ -16,6 +16,12 @@ class PhysicalProduct(Product, CanBeShipped):                      # The Physica
         # Adds the PhysicalProduct-specific information
         print(f"Weight: {self.__weight} kg")
 
+        # Display fulfilment information
+        print(f"Fulfilment: {self.get_fulfilment_info()}")
+
+        print("\nSupplier Information:")
+        self.supplier.display_information()
+
     def get_fulfilment_info(self) -> str:                          # This method provides fulfilment information specific to physical products. It returns a string indicating that the product requires physical shipping. This method is an implementation of the abstract method defined in the Product class, fulfilling the contract established by the abstract base class and ensuring that subclasses provide specific functionality related to fulfilment information.
         return "This product requires physical shipping."          # Return a string indicating that the product requires physical shipping, providing fulfilment information specific to physical products.
 
