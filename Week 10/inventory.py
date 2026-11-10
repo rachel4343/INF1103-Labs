@@ -50,11 +50,16 @@ class Inventory:
             for item in data:
 
                 # Reconstruct the Supplier object
-                supplier_data = item.get("supplier", {
-                    "supplier_id": "S000",
-                    "name": "Unknown Supplier",
-                    "contact_email": "unknown@example.com"
-                })
+                # # The purpose is simply to prevent older records from failing to load because they do not have Supplier information.
+                # # Python uses the default information:
+                # supplier_data = item.get("supplier", {
+                #     "supplier_id": "S000",
+                #     "name": "Unknown Supplier",
+                #     "contact_email": "unknown@example.com"
+                # })
+
+                # This means Supplier information must exist in every JSON record. If it is missing, Python raises a KeyError.
+                supplier_data = item["supplier"]
 
                 supplier = Supplier(
                     supplier_data["supplier_id"],
