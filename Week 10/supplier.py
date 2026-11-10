@@ -14,3 +14,10 @@ class Supplier:
         print(f"Supplier ID: {self.supplier_id}")
         print(f"Supplier Name: {self.name}")
         print(f"Contact Email: {self.contact_email}")
+
+    def to_dict(self) -> dict:                                            # This method returns a dictionary representation of the Supplier object, which can be useful for saving or exporting supplier data. The keys in the dictionary correspond to the attribute names, and the values are the corresponding attribute values.
+        return {
+            "supplier_id": self.supplier_id,
+            "name": self.name,
+            "contact_email": self.contact_email
+        }
