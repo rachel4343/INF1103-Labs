@@ -36,9 +36,6 @@ class Product(ABC):
         print(f"Price: ${self.__price:.2f}")                # Display the product price formatted to 2 decimal places.
         print(f"Stock: {self.__stock}")                     # Display the product stock.
         
-        print("\nSupplier Information:")
-        self.supplier.display_information()                 # This calls the display_information method of the Supplier class to display the supplier's information associated with the product. This allows for easy access to the supplier's details directly from the product object, demonstrating the association relationship between Product and Supplier.
-
     def to_dict(self) -> dict:                                      # This public method returns a dictionary representation of the product's attributes, which can be useful for saving or exporting product data.
         return {
             "product_id": self.__product_id,
