@@ -37,7 +37,6 @@ class Inventory:
         
         for product in self.products:       # LSP: They should accept and manage Product objects rather than checking for specific subclasses unnecessarily.
             product.display_information()
-            print(f"Fulfilment: {product.get_fulfilment_info()}")
             print("-----------------------------")
 
     def load_inventory(self, filename: str) -> None:
