@@ -1,9 +1,39 @@
-
 from supplier import Supplier
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
 from inventory import Inventory
 from order import Order
+
+# # This script demonstrates the use of various classes and their relationships, including association, aggregation, composition, and polymorphism.
+# # Evidence of relationships, LSP and polymorphism
+# supplier = Supplier("S001", "TechWorld", "sales@techworld.com")
+# laptop = PhysicalProduct("P001", "Laptop", 1000.0, 10, 2.5, supplier)
+# ebook = DigitalProduct("P002", "Ebook", 20.0, 50, 15.0, supplier)
+
+# # Aggregation: Inventory stores Product references
+# inventory = Inventory()
+# inventory.add_product(laptop)
+# inventory.add_product(ebook)
+
+# # Polymorphism: Both subclasses work through Product references
+# for product in inventory.products:
+#     product.display_information()
+#     print(product.get_fulfilment_info())
+
+# # Composition: Order creates and manages OrderLine objects
+# order = Order("O001")
+# order.add_order_line(laptop, 2)
+# order.add_order_line(ebook, 1)
+# order.display_order()
+
+# # Check that OrderLines are separate objects
+# order2 = Order("O002")
+# order2.add_order_line(laptop, 1)
+# print("Same OrderLine object?", order.order_lines[0] is order2.order_lines[0])
+
+# # Check that both OrderLines refer to the same Product
+# print("Same Product object?", order.order_lines[0].product is order2.order_lines[0].product)
+
 
 
 # ==========================================
