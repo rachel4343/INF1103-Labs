@@ -1,0 +1,59 @@
+10. Reflection task
+Consider the following questions:
+•	Which of your “Predict first” answers in this lab did not match what happened? What assumption was wrong, and what did you change?
+o   One of my predictions was that removing a Product from an Inventory would also destroy the Product object. However, I discovered that removing it from the products list only removes the Inventory's reference to that object. The Product can still exist if another part of the program holds a reference to it.
+o   also initially thought that an object reference automatically represented aggregation or composition. I learned that a reference can simply represent association, depending on the relationship and ownership between the objects.
+o   I changed my implementation to reflect the intended relationships: Inventory stores Product references, while Order creates and manages its own OrderLine objects.
+
+•	Where in your group project could you use association, aggregation or composition? Which would you choose, and why?
+o	In my group's Phishing Email Detection System, the system is divided into four main components: Logic Manager, AI Manager, I/O Manager and Data Manager. These components work together to analyse suspicious emails and manage phishing reports.
+o	I think association would be the most suitable relationship between these managers because each manager has its own specific responsibility but needs to interact with the other managers to complete the system's workflow.
+o	For example, the Logic Manager works with the AI Manager to process the AI's analysis results and determine the appropriate threat level and priority of a phishing report. It also interacts with the Data Manager to manage report information and the I/O Manager to support the overall report-processing workflow.
+o	I would choose association because the managers are separate components that can function independently and are not necessarily responsible for creating or destroying one another. Each manager has its own role, and they communicate with one another when needed.
+o	Aggregation could also be considered if one component groups or manages other independently existing components. However, composition would be less suitable because the managers do not have a strict whole-part lifecycle relationship where one manager's existence depends on another.
+o	In short, association best represents how the four managers collaborate while maintaining separate responsibilities.
+
+•	Can an object reference exist without representing aggregation or composition? Give an example from your implementation.
+o   Yes. An object reference can represent association without representing aggregation or composition.
+o   For example, in my implementation, a Product has a reference to a Supplier:
+o   self.supplier: Supplier = supplier
+o   This allows the Product to access the Supplier's information. However, the Product does not own or control the Supplier's lifecycle. 
+o   The Supplier can exist independently and can be shared by multiple Products. Therefore, this is an association.
+
+•	Why can a Product be removed from an Inventory without being destroyed, while an OrderLine is designed to belong to an Order?
+o	A Product can exist independently of an Inventory. The Inventory only stores references to Product objects in its products list. When a Product is removed, the reference is removed from the list, but the Product object itself is not necessarily destroyed if other references still exist.
+o	An OrderLine, on the other hand, represents an individual item within an Order. It is created and managed by the Order through its add_order_line() method. This represents composition because the Order owns and manages its OrderLine objects as part of its structure.
+
+•	Why should Inventory store Product references rather than separate collections for PhysicalProduct and DigitalProduct?
+o	Inventory should store Product references because both PhysicalProduct and DigitalProduct inherit from the Product base class.
+o	For example,
+o   self.products: list[Product] = []
+o	This allows Inventory to manage both types of products in one collection. It also supports polymorphism. Inventory can call methods such as display_information() on each Product without needing to check whether it is a PhysicalProduct or DigitalProduct.
+
+•	How do type hints help communicate design decisions to other developers?
+o	Type hints communicate the expected data types of variables, parameters and return values. They help other developers understand how different classes are intended to interact.
+o	For example,
+o   def add_product(self, product: Product) -> None:
+o       self.products.append(product)
+o	The type hint product: Product communicates that the method accepts a Product object, including its subclasses such as PhysicalProduct and DigitalProduct.
+o	Similarly,
+o   self.products: list[Product] = []
+o   communicates that Inventory stores a list of Product references.
+o	Type hints also improve code readability and help development tools detect potential type-related errors.
+
+•	Would your UML design still make sense if you implemented it in Java or C# rather than Python?
+o	Yes. The UML design represents the relationships and structure between classes rather than the syntax of a particular programming language.
+o	Association, aggregation, composition and inheritance are supported concepts in Python, Java and C#.
+o	Although the implementation syntax might differ, the same class relationships would still apply. For example, a Product could still have a Supplier reference, Inventory could still store a collection of Products, and Order could still manage its OrderLine objects.
+o	Therefore, the UML design is not limited to Python.
+
+•	Can a subclass technically inherit from Product but still violate LSP? Explain how.
+o	Yes. A subclass can inherit from Product but still violate the Liskov Substitution Principle (LSP) if it changes or breaks the expected behaviour of the parent class.
+o	For example, suppose Product provides this method:
+o   def update_stock(self, quantity: int) -> None:
+o       self.__stock = quantity
+o	However, a DigitalProduct subclass overrides it like this:
+o   def update_stock(self, quantity: int) -> None:
+o       raise NotImplementedError("Digital products have no stock")
+o	This violates LSP because code that expects a Product object (the subclass DigitalProduct) to support update_stock() would fail when given a DigitalProduct object.
+o	A subclass should preserve the expected behaviour of its parent class so that it can be substituted wherever the parent class is expected.
