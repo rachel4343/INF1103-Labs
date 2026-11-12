@@ -11,6 +11,12 @@ class Product(ABC):
         pass                                                # The pass statement is used as a placeholder for the abstract method, indicating that it does not have an implementation in the Product class. Subclasses must provide their own implementation of this method to fulfill the contract defined by the abstract base class.
 
     def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier):  # The supplier parameter is an instance of the Supplier class, representing the supplier associated with the product. This establishes a relationship between the Product and Supplier classes, allowing for better organization and management of product and supplier information.
+        if price <= 0:
+            raise ValueError("Product price must be greater than zero.")
+
+        if stock < 0:
+            raise ValueError("Product stock cannot be negative.")
+
         self.__product_id = product_id
         self.__name = name
         self.__price = price
@@ -28,6 +34,9 @@ class Product(ABC):
         return self.__price                                 # Return the private price attribute.
 
     def update_stock(self, quantity: int) -> None:          # This public method updates the stock quantity of the product.
+        if quantity < 0:
+            raise ValueError("Product stock cannot be negative.")
+        
         self.__stock = quantity                             # The stock attribute is updated to the new quantity provided by the parameter.
 
     def display_information(self) -> None:                  # This public method displays the product's information in a formatted manner.
