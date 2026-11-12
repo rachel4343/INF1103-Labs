@@ -3,9 +3,7 @@
 import json
 from product import Product
 from supplier import Supplier
-from physical_product import PhysicalProduct                           # The PhysicalProduct class is imported to allow the Inventory class to create instances of physical products when loading from a JSON file. 
-from digital_product import DigitalProduct                             # The DigitalProduct class is imported to allow the Inventory class to create instances of digital products when loading from a JSON file.
-
+from product_factory import ProductFactory                             # The ProductFactory class is imported to provide a centralized way to create Product instances based on the product type. This allows the Inventory class to delegate the creation of products to the factory, adhering to the principle of single responsibility and promoting code reusability.
 
 class Inventory:
 
@@ -69,24 +67,26 @@ class Inventory:
                 # Reconstruct the correct Product subclass
                 if item["type"] == "physical":
 
-                    product = PhysicalProduct(
+                    product = ProductFactory.create(
+                        "physical",
                         item["product_id"],
                         item["name"],
                         item["price"],
                         item["stock"],
-                        item["weight"],
-                        supplier
+                        supplier,
+                        weight=item["weight"]
                     )
 
                 elif item["type"] == "digital":
 
-                    product = DigitalProduct(
+                    product = ProductFactory.create(
+                        "digital",
                         item["product_id"],
                         item["name"],
                         item["price"],
                         item["stock"],
-                        item["download_size"],
-                        supplier
+                        supplier,
+                        download_size=item["download_size"]
                     )
 
                 else:
