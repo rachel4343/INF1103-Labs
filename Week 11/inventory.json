@@ -1,15 +1,15 @@
 [
     {
-        "product_id": "P001",
-        "name": "Laptop",
-        "price": 2300.0,
-        "stock": 20,
+        "product_id": "T001",
+        "name": "Virtual Monitor",
+        "price": 4000.0,
+        "stock": 21,
         "supplier": {
-            "supplier_id": "G001",
-            "name": "Rachel",
-            "contact_email": "rachel@hotmail.com"
+            "supplier_id": "8910",
+            "name": "Ranter",
+            "contact_email": "ranter123@hotmail.com"
         },
-        "type": "physical",
-        "weight": 15.0
+        "type": "digital",
+        "download_size": 800.0
     }
 ]
