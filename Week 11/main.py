@@ -4,6 +4,7 @@
 from supplier import Supplier
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
+from product_factory import ProductFactory
 from inventory import Inventory
 from order import Order
 
@@ -128,30 +129,34 @@ while True:
         )
 
         # Create PhysicalProduct or DigitalProduct
+        # Use the ProductFactory to create the appropriate product type based on user input. This approach adheres to the Factory design pattern, which encapsulates the object creation logic and allows for easy extension of new product types in the future without modifying existing code.
+        # We have removed the responsibility of directly creating the product objects. Factory now handles that responsibility.
         if product_type == "1":
 
             weight = get_float_input("Enter product weight (kg): ")
 
-            product = PhysicalProduct(
+            product = ProductFactory.create(
+                "physical",
                 product_id,
                 name,
                 price,
                 stock,
-                weight,
-                supplier
+                supplier,
+                weight=weight
             )
 
         else:
 
             download_size = get_float_input("Enter download size (MB): ")
 
-            product = DigitalProduct(
+            product = ProductFactory.create(
+                "digital",
                 product_id,
                 name,
                 price,
                 stock,
-                download_size,
-                supplier
+                supplier,
+                download_size=download_size
             )
 
         inventory.add_product(product)
