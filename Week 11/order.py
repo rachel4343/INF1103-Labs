@@ -5,7 +5,8 @@
 
 from product import Product
 from order_line import OrderLine
-from discount_strategy import DiscountStrategy, NoDiscount
+from discount_strategy import DiscountStrategy
+from no_discount import NoDiscount
 
 class Order:
     # Type hint: DiscountStrategy | None means accepts a strategy or None and = None means that the parameter is optional. If no strategy is provided, it defaults to None.
