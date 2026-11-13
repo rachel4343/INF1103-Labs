@@ -1,8 +1,10 @@
 from supplier import Supplier
 from physical_product import PhysicalProduct
 from order import Order
-from discount_strategy import BulkDiscount, PercentageDiscount, StudentDiscount
 from product_factory import ProductFactory
+from percentage_discount import PercentageDiscount
+from bulk_discount import BulkDiscount
+from student_discount import StudentDiscount
 
 # --------------------------------------------------
 # TESTING STRATEGY AND FACTORY PATTERNS 
